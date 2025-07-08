@@ -69,7 +69,7 @@ export function BarraDeEntidades<T>({
   getKey: (e: T) => string | number;
 }) {
   const [entidades, setEntidades] = useState<T[]>([]);
-  const [busqueda, setBusqueda] = useState("");
+    const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     async function cargar() {

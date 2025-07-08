@@ -1,3 +1,11 @@
+export interface Entidad<T> {
+  entidad: T,
+  clase: string,
+  obtenerNombre: (ent: T) => string,
+  obtenerDescripcion: (ent: T) => string,
+  obtenerImagen: (ent: T) => string,
+}
+
 export interface Insumo {
   nombre: string;
   cantidad: number;
@@ -21,7 +29,8 @@ export interface InsumoValor {
 }
 
 export interface Respuesta {
-  mensaje: string;
+  ok: boolean;
+  mensaje: string[];
 }
 
 export interface Lista {
