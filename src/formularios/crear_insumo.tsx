@@ -1,8 +1,42 @@
+import { useRef } from 'react';
+import type { Insumo } from '../contratos/tipos';
+
+interface Props {
+  onCrear: (datos: Insumo) => void;
+  onCerrar?: () => void;
+}
 
 
-export default function FormularioCrear() {
+
+export default function FormularioCrear({onCrear, onCerrar}: Props) {
+  const refForm = useRef<HTMLFormElement>(null);
+
+  function CrearInsumo(e: React.FormEvent){
+    e.preventDefault();
+    const form = refForm.current;
+    if (!form) return;
+
+    const formInfo = FormData(form);
+
+    const nombre = formInfo.get("nombre");
+    const cantidad = Number(formInfo.get("cantidad"));
+    const cantidad_minima = Number(formInfo.get("cantidad_minima"));
+    const costo = Number(formInfo.get("costo"));
+    if (!nombre) return;
+    if (cantidad <= 0) return;
+    if (cantidad_minima <= 0) return;
+    if (costo <= 0) return;
+    const datos:Insumo =  {
+    nombre,
+    cantidad,
+    cantidad_minima,
+    costo
+  };
+  onCrear(datos);
+  }
+  
   return (
-    <form className="formulario__crear" id="crear__insumo">
+    <form onSubmit={CrearInsumo} ref={refForm} className="formulario__crear" id="crear__insumo">
       <fieldset>
         <legend>Agregar un insumo al inventario</legend>
 
@@ -57,6 +91,9 @@ export default function FormularioCrear() {
         <button type="submit" id="btn_agregar__insumo" className="btn_submit">
           Agregar
         </button>
+      {onCerrar && (
+        <button type="button" onClick={onCerrar} className="btn_cancelar"> Cancelar </button>
+      )}
 
         <div className="mensaje_respuesta oculto" aria-live="polite"></div>
       </fieldset>

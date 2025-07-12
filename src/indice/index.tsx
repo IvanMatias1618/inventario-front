@@ -3,10 +3,12 @@ import type { InsumoValor} from '../contratos/tipos';
 import { servicioDeInsumos } from '../servicios/servicio_insumos';
 import BarraDeEntidades from '../barra_de_entidades/barra';
 import EntidadVisual from '../barra_de_entidades/entidad';
-import FormularioEditar from '../formularios/editar_insumos'; 
+import FormularioEditar from '../formularios/editar_insumos';
+import FormularioCrear from '../formularios/crear_insumo';
 
 export default function PaginaIndex() {
   const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
+  const [crear, setCrear] = useState<boolean>(false);
   return (
     <>
     <BarraDeEntidades<InsumoValor>
@@ -41,6 +43,15 @@ export default function PaginaIndex() {
  }}
 onCerrar={() => setEntidadParaEditar(null)} />
   )}
+  <button type="submit" onClick={setCrear(true)}>Crear</button>
+  {crear && (
+    <FormularioCrear
+    onCrear={(datos) => {
+      servicioDeInsumos.crear(datos);
+      setCrear(false);
+    }}
+  onCerrar={() => setCrear(false)}/>
+  )} 
   </>)
 }
 
