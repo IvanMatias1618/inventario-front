@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Buscador } from "./buscador";
 import type { Servicio } from "../contratos/contratos";
 
-export function BarraDeEntidades<T>(
+export default function BarraDeEntidades<Valor>(
   {servicio, render, obtenerKey}:
-  {servicio: Servicio<T, U, V>;
-    render: (e: T) => React.ReactNode;
-    obtenerKey: (e: T) => string | number;
+  {servicio: Servicio<Crear,Editar,Valor>;
+    render: (e: Valor) => React.ReactNode;
+    obtenerKey: (e: Valor) => string | number;
   }) {
-  const [entidades, setEntidades] = useState<T[]>([]);
+  const [entidades, setEntidades] = useState<Valor[]>([]);
   const [busqueda, setBusqueda] = useState("");
 
   useEffect( () => {
@@ -37,3 +37,4 @@ export function BarraDeEntidades<T>(
     </>
   )
 }
+

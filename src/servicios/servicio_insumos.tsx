@@ -50,9 +50,10 @@ export const servicioDeInsumos: Servicio<Insumo, InsumoEditado, InsumoValor> = {
         mensaje: ["Error al listar los insumos"]
       };
     }
+    const json = await respuesta.json();
     return {
       ok: true,
-      mensaje: [String(respuesta.json())]
+      mensaje: json
     };
   },
 

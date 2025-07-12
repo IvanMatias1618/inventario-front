@@ -3,7 +3,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import  IndexPage  from "./index.tsx";
+import PaginaIndex from './indice/index.tsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,7 +28,7 @@ function App() {
         </p>
       </div>
       {/* Tu despliegue principal */}
-      <IndexPage />
+      <PaginaIndex />
       
     </>
   )
