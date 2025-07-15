@@ -43,7 +43,8 @@ export default function PaginaIndex() {
  }}
 onCerrar={() => setEntidadParaEditar(null)} />
   )}
-  <button type="submit" onClick={setCrear(true)}>Crear</button>
+<button type="button" onClick={() => setCrear(true)}>Crear</button>
+  
   {crear && (
     <FormularioCrear
     onCrear={(datos) => {
@@ -52,6 +53,6 @@ onCerrar={() => setEntidadParaEditar(null)} />
     }}
   onCerrar={() => setCrear(false)}/>
   )} 
-  </>)
+  </>);
 }
 
