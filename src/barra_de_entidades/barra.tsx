@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Buscador } from "./buscador";
 import type { Servicio } from "../contratos/contratos";
+import "./estilos.css";
 
 export default function BarraDeEntidades<Valor>(
   {servicio, render, obtenerKey}:
@@ -30,8 +31,8 @@ export default function BarraDeEntidades<Valor>(
     <>
     <Buscador onBuscar={setBusqueda} />
     <div className="barra_de_entidades">
-      <ul>{entidades.length === 0? (<p> No se encontraron resultados</p>): (entidades.map(e =>
-      <li key={obtenerKey(e)}>{render(e)}</li>)
+      <ul id="lista_de_entidades" >{entidades.length === 0? (<p> No se encontraron resultados</p>): (entidades.map(e =>
+      <li className="entidad_item" key={obtenerKey(e)}>{render(e)}</li>)
     )}</ul>
       </div>
     </>

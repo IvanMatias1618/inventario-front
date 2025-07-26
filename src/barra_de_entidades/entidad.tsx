@@ -1,4 +1,5 @@
 import type { Entidad } from "../contratos/tipos";
+import "./estilos.css";
 
 export default function EntidadVisual<T>({ entidad, clase, obtenerNombre, obtenerDescripcion, obtenerImagen, onEliminar, onEditar}: Entidad<T> & { onEliminar?: () => void} & {onEditar?:() => void}){
   const nombre = obtenerNombre(entidad);
@@ -6,7 +7,7 @@ export default function EntidadVisual<T>({ entidad, clase, obtenerNombre, obtene
   const imagen = obtenerImagen ? obtenerImagen(entidad) : `/img/${nombre.toLowerCase()}.png`;
   return (
     <div className={`entidad ${clase}`}>
-      <img src={imagen} alt={`Imagen de ${nombre}`} />
+      <img className="entidad_img" src={imagen} alt={`Imagen de ${nombre}`} />
       <div className="datos"> <h1 className={`nombre ${clase}`} >{nombre}</h1>
         <p className={`descripcion ${clase}`}> {descripcion} </p>
         </div>
