@@ -20,6 +20,7 @@ export default function BarraDeEntidades<Valor>(
         ? await servicio.listar()
         : await servicio.buscarPorNombre(busqueda);
         const valores = await Promise.all(nombres.mensaje.map(servicio.valor));
+        /*const valores = await Promise.all(nombres.mensaje.map(servicio.valor));*/
         setEntidades(valores);
       } catch(error) {
         console.log("Error al cargar las entidades:", error);

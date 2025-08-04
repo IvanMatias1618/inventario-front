@@ -58,7 +58,7 @@ export const servicioDeInsumos: Servicio<Insumo, InsumoEditado, InsumoValor> = {
   },
 
   async valor(nombre: string): Promise<InsumoValor>{
-    const respuesta = await fetch(`${url_base}/valor?consulta=${encodeURIComponent(nombre)}`);
+    const respuesta = await fetch(`${url_base}/valor?consulta=${nombre}`);
     if (!respuesta.ok) throw new Error(`Error al buscar el insumo ${nombre}`);
     const info: InsumoValor = await respuesta.json();
     return info;
