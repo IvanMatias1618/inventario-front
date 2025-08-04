@@ -10,7 +10,7 @@ export interface Insumo {
   nombre: string;
   cantidad: number;
   cantidad_minima: number;
-  costo: number;
+  precio: number;
 }
 
 export interface InsumoEditado {

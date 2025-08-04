@@ -48,6 +48,7 @@ onCerrar={() => setEntidadParaEditar(null)} />
   {crear && (
     <FormularioCrear
     onCrear={(datos) => {
+      console.log(datos);
       servicioDeInsumos.crear(datos);
       setCrear(false);
     }}

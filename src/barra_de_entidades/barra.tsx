@@ -19,7 +19,8 @@ export default function BarraDeEntidades<Valor>(
         busqueda === ""
         ? await servicio.listar()
         : await servicio.buscarPorNombre(busqueda);
-        const valores = await Promise.all(nombres.mensaje.map(servicio.valor));
+        console.log(nombres.mensaje);
+        const valores = await Promise.all(nombres.mensaje.map(e => servicio.valor(e)));
         /*const valores = await Promise.all(nombres.mensaje.map(servicio.valor));*/
         setEntidades(valores);
       } catch(error) {

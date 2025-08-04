@@ -16,22 +16,23 @@ export default function FormularioCrear({onCrear, onCerrar}: Props) {
     const form = refForm.current;
     if (!form) return;
 
-    const formInfo = FormData(form);
+    const formInfo = new FormData(form);
 
-    const nombre = formInfo.get("nombre");
+    const nombre = formInfo.get("nombre") as string;
     const cantidad = Number(formInfo.get("cantidad"));
     const cantidad_minima = Number(formInfo.get("cantidad_minima"));
-    const costo = Number(formInfo.get("costo"));
+    const precio = Number(formInfo.get("precio"));
     if (!nombre) return;
     if (cantidad <= 0) return;
     if (cantidad_minima <= 0) return;
-    if (costo <= 0) return;
+    if (precio <= 0) return;
     const datos:Insumo =  {
     nombre,
     cantidad,
     cantidad_minima,
-    costo
+    precio
   };
+  console.log(datos.cantidad, datos.nombre);
   onCrear(datos);
   }
   
@@ -41,7 +42,7 @@ export default function FormularioCrear({onCrear, onCerrar}: Props) {
         <legend>Agregar un insumo al inventario</legend>
 
         <div className="campo_formulario">
-          <label htmlFor="agregar__insumo_nombre">Nombre de insumo:</label>
+          <label htmlFor="nombre">Nombre de insumo:</label>
           <input
             type="text"
             className="insumo__nombre"
@@ -52,7 +53,7 @@ export default function FormularioCrear({onCrear, onCerrar}: Props) {
         </div>
 
         <div className="campo_formulario">
-          <label htmlFor="agregar__insumo_cantidad">Cantidad total del insumo:</label>
+          <label htmlFor="cantidad">Cantidad total del insumo:</label>
           <input
             type="number"
             className="insumo__cantidad"
@@ -64,7 +65,7 @@ export default function FormularioCrear({onCrear, onCerrar}: Props) {
         </div>
 
         <div className="campo_formulario">
-          <label htmlFor="agregar__insumo_cantidad_minima">Cantidad mínima del insumo:</label>
+          <label htmlFor="cantidad_minima">Cantidad mínima del insumo:</label>
           <input
             type="number"
             className="insumo__cantidad_minima"
@@ -76,7 +77,7 @@ export default function FormularioCrear({onCrear, onCerrar}: Props) {
         </div>
 
         <div className="campo_formulario">
-          <label htmlFor="agregar__insumo_precio">Precio por kilo del insumo:</label>
+          <label htmlFor="precio">Precio por kilo del insumo:</label>
           <input
             type="number"
             className="insumo__precio"
@@ -88,7 +89,7 @@ export default function FormularioCrear({onCrear, onCerrar}: Props) {
           />
         </div>
 
-        <button type="submit" id="btn_agregar__insumo" className="btn_submit">
+        <button type="submit"  id="btn_agregar__insumo" className="btn_submit">
           Agregar
         </button>
       {onCerrar && (

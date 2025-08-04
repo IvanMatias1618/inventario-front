@@ -36,9 +36,10 @@ export const servicioDeInsumos: Servicio<Insumo, InsumoEditado, InsumoValor> = {
         mensaje: [`Error al buscar el insumo ${nombre}`]     
       };
     }
+    const datos = await respuesta.json();
     return {
       ok: true,
-      mensaje: [String(respuesta.json())]
+      mensaje: [datos]
     }
   },
 
