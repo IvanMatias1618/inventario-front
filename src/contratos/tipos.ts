@@ -6,6 +6,22 @@ export interface Entidad<T> {
   obtenerImagen: (ent: T) => string,
 }
 
+export interface Receta {
+  nombre: string,
+  ingredientes: [string, number][],
+}
+
+export interface RecetaEditada {
+  nombre?: string,
+  ingredientes?: [string, number][],
+}
+
+export interface RecetaValor {
+  nombre: string,
+  ingredientes: [string, number][],
+  costo: number,
+}
+
 export interface Insumo {
   nombre: string;
   cantidad: number;
