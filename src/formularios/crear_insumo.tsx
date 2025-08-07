@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import type { Insumo } from '../contratos/tipos';
+import '../styles.css';
 
 interface Props {
   onCrear: (datos: Insumo) => void;

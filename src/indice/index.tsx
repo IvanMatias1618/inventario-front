@@ -5,6 +5,7 @@ import BarraDeEntidades from '../barra_de_entidades/barra';
 import EntidadVisual from '../barra_de_entidades/entidad';
 import FormularioEditar from '../formularios/editar_insumos';
 import FormularioCrear from '../formularios/crear_insumo';
+import '../styles.css';
 
 export default function PaginaIndex() {
   const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
@@ -43,7 +44,8 @@ export default function PaginaIndex() {
  }}
 onCerrar={() => setEntidadParaEditar(null)} />
   )}
-<button type="button" onClick={() => setCrear(true)}>Crear</button>
+  <div id="crear_seccion">
+<button type="button" onClick={() => setCrear(true)} className="crear_boton">Crear</button>
   
   {crear && (
     <FormularioCrear
@@ -53,7 +55,8 @@ onCerrar={() => setEntidadParaEditar(null)} />
       setCrear(false);
     }}
   onCerrar={() => setCrear(false)}/>
-  )} 
+  )}
+  </div> 
   </>);
 }
 

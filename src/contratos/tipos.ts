@@ -6,9 +6,13 @@ export interface Entidad<T> {
   obtenerImagen: (ent: T) => string,
 }
 
+export interface Ingrediente {
+  nombre: string,
+  cantidad: number,
+}
 export interface Receta {
   nombre: string,
-  ingredientes: [string, number][],
+  ingredientes: Ingrediente[],
 }
 
 export interface RecetaEditada {
