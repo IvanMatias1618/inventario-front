@@ -1,40 +1,36 @@
 import { useState } from 'react';
-import type { InsumoValor} from '../contratos/tipos';
-import { servicioDeInsumos } from '../servicios/servicio_insumos';
+import type { Insumo } from '../contratos/tipos';
 import BarraDeEntidades from '../barra_de_entidades/barra';
 import EntidadVisual from '../barra_de_entidades/entidad';
 import FormularioEditar from '../formularios/editar_insumos';
 import FormularioCrear from '../formularios/crear_insumo';
 import '../styles.css';
+import {ServicioSupremo}  from '../servicios/servicio';
+import { INSUMOS_URL } from '../urls'; 
 
-export default function PaginaIndex() {
+
+export default function PaginaInsumos() {
+  const servicioDeInsumos = new ServicioSupremo(INSUMOS_URL);
   const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
   const [crear, setCrear] = useState<boolean>(false);
   return (
     <>
-    <BarraDeEntidades<InsumoValor>
-    servicio = {{
-      crear: servicioDeInsumos.crear,
-      listar: servicioDeInsumos.listar,
-      buscarPorNombre: servicioDeInsumos.buscarPorNombre,
-      valor: servicioDeInsumos.valor,
-      editar: servicioDeInsumos.editar,
-      eliminar: servicioDeInsumos.eliminar
-    }}
-    obtenerKey={(i) => i.nombre}
-    render={(i) => (
-      <EntidadVisual
-      entidad={i}
+    <BarraDeEntidades<Insumo>
+    servicio={servicioDeInsumos}
+  obtenerKey={(i) => i.nombre}
+  render={(i) => (
+    <EntidadVisual
+    entidad={i}
     obtenerNombre={(x) => x.nombre}
-    obtenerDescripcion={(x) => `cantidad: ${x.cantidad} \nCantidad minima: ${x.precio}`}
+    obtenerDescripcion={(x) => `Cantidad: ${x.cantidad} \nCantidad minima: ${x.cantidad_minima}\nPrecio por gramo: ${x.precio}`}
     obtenerImagen={(x) => `/img/insumos/${x.nombre}.png`}
-    onEliminar={() => {
-      servicioDeInsumos.eliminar(i.nombre);
-    }}
-    onEditar={() => setEntidadParaEditar(i.nombre)}
-    key={i.id}
-    clase='insumos'/>)}
-    />
+    onEliminar={()=> servicioDeInsumos.eliminar(i.nombre)}
+    onEditar={()  => setEntidadParaEditar(i.nombre)}
+    key={i.nombre}
+    clase='insumos'
+  />)}
+  />
+
   {entidadParaEditar && (
    <FormularioEditar
    insumoNombre={entidadParaEditar}
@@ -57,6 +53,6 @@ onCerrar={() => setEntidadParaEditar(null)} />
   onCerrar={() => setCrear(false)}/>
   )}
   </div> 
-  </>);
+  </>
+  )
 }
-

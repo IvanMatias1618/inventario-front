@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { Buscador } from "./buscador";
-import type { Servicio } from "../contratos/contratos";
 import "./estilos.css";
+import type {Entidad_suprema, EntidadReactiva} from '../contratos/tipos';
 
-export default function BarraDeEntidades<Valor>(
-  {servicio, render, obtenerKey}:
-  {servicio: Servicio<Crear,Editar,Valor>;
-    render: (e: Valor) => React.ReactNode;
-    obtenerKey: (e: Valor) => string | number;
-  }) {
-  const [entidades, setEntidades] = useState<Valor[]>([]);
+
+
+
+export default function BarraDeEntidades<T extends Entidad_suprema<any, any, any>>(  
+  {servicio, render, obtenerKey}:EntidadReactiva<T>) {
+  const [entidades, setEntidades] = useState<T['valor'][]>([]);
   const [busqueda, setBusqueda] = useState("");
 
   useEffect( () => {
@@ -21,6 +20,7 @@ export default function BarraDeEntidades<Valor>(
         : await servicio.buscarPorNombre(busqueda);
         console.log(nombres.mensaje);
         const valores = await Promise.all(nombres.mensaje.map(e => servicio.valor(e)));
+        console.log(valores);
         /*const valores = await Promise.all(nombres.mensaje.map(servicio.valor));*/
         setEntidades(valores);
       } catch(error) {
