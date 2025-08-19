@@ -3,10 +3,11 @@ import Cabecera from './cabecera/titulo';
 import './App.css';
 import PaginaInsumos from './paginas/insumos';
 import PaginaRecetas from './paginas/recetas';
+import PaginaUsuarios from './paginas/usuarios';
 
 
 function App() {
-  const [paginaActual, setPaginaActual] = useState('insumos');
+  const [paginaActual, setPaginaActual] = useState('usuarios');
 
   const renderizarPagina = () =>  {
     switch (paginaActual) {
@@ -14,6 +15,8 @@ function App() {
         return <PaginaInsumos/>;
       case 'recetas':
         return <PaginaRecetas />;
+      case 'usuarios':
+        return <PaginaUsuarios />;
     }
   }
   

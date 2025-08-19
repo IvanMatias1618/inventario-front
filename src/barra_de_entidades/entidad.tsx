@@ -1,7 +1,7 @@
 import type { Entidad } from "../contratos/tipos";
 import "./estilos.css";
 
-export default function EntidadVisual<T>({ entidad, clase, obtenerNombre, obtenerDescripcion, obtenerImagen, onEliminar, onEditar}: Entidad<T> & { onEliminar?: () => void} & {onEditar?:() => void}){
+export default function EntidadVisual<T>({ entidad, clase, obtenerNombre, obtenerDescripcion, obtenerImagen, onEliminar, onEditar }: Entidad<T> & { onEliminar?: () => void} & {onEditar?:() => void}) {
   const nombre = obtenerNombre(entidad);
   const descripcion = obtenerDescripcion(entidad);
   const imagen = obtenerImagen ? obtenerImagen(entidad) : `/img/${nombre.toLowerCase()}.png`;
