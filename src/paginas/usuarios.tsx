@@ -10,15 +10,18 @@ import FormularioCrear from '../formularios/usuarios/crear';
 import { IniciarSesion } from '../servicios/usuarios'; 
 import FormIniSesion from '../formularios/usuarios/iniciar_sesion';
 
+interface GuardarUsuario{
+  guardarUsuario: (nombre: string, token: string) => void;
+}
 
-export default function PaginaUsuarios(guardartoken: (token:string)=> void ) {
+export default function PaginaUsuarios( {guardarUsuario} : GuardarUsuario ) {
   const servicioDeUsuarios = new ServicioSupremo(USUARIOS_URL);
   //const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
   const [crear, setCrear] = useState<boolean>(false);
   const [iniciarSesion, setIniciarSesion] = useState<boolean>(false);
   async function IniciarSesi(datos: UsuarioIniSesion) {
     const res = await IniciarSesion(datos);
-    guardartoken(res.mensaje);
+    guardarUsuario(datos.nombre, res.mensaje);
   }
   return (
     <>
@@ -49,6 +52,9 @@ onCerrar={() => setEntidadParaEditar(null)} />
   ) */}
   <div id="crear_seccion">
 <button type="button" onClick={() => setCrear(true)} className="crear_boton">Crear</button>
+<button type="button" onClick={() => setIniciarSesion(true)} className="inciar_sesion__boton">Iniciar Sesion</button>
+
+
   {iniciarSesion && <FormIniSesion
     onSubmit={(datos) => IniciarSesi(datos)}
     onCerrar={() => setIniciarSesion(false)}/>}
