@@ -9,9 +9,11 @@ import {ServicioSupremo}  from '../servicios/servicio';
 import { RECETAS_URL } from '../urls'; 
 import { INSUMOS_URL } from '../urls'; 
 
-
-export default function PaginaInsumos() {
-  const servicioDeInsumos = new ServicioSupremo(INSUMOS_URL);
+interface Prop {
+  token: string;
+}
+export default function PaginaInsumos({token}: Prop) {
+  const servicioDeInsumos = new ServicioSupremo(INSUMOS_URL,  token);
   const ingredientes: string[] =  [];
   (async () => {
   const ingredientes: string[] = (await servicioDeInsumos.listar()).mensaje;
@@ -20,7 +22,7 @@ export default function PaginaInsumos() {
 })();
 
 
-  const servicioDeRecetas = new ServicioSupremo(RECETAS_URL);
+  const servicioDeRecetas = new ServicioSupremo(RECETAS_URL, token);
   const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
   const [crear, setCrear] = useState<boolean>(false);
   

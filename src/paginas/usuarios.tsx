@@ -12,16 +12,18 @@ import FormIniSesion from '../formularios/usuarios/iniciar_sesion';
 
 interface GuardarUsuario{
   guardarUsuario: (nombre: string, token: string) => void;
+  token: string;
 }
 
-export default function PaginaUsuarios( {guardarUsuario} : GuardarUsuario ) {
-  const servicioDeUsuarios = new ServicioSupremo(USUARIOS_URL);
+export default function PaginaUsuarios( {guardarUsuario,  token} : GuardarUsuario ) {
+  const servicioDeUsuarios = new ServicioSupremo(USUARIOS_URL,token);
   //const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
   const [crear, setCrear] = useState<boolean>(false);
   const [iniciarSesion, setIniciarSesion] = useState<boolean>(false);
   async function IniciarSesi(datos: UsuarioIniSesion) {
     const res = await IniciarSesion(datos);
     guardarUsuario(datos.nombre, res.mensaje);
+    console.log(res.mensaje);
   }
   return (
     <>

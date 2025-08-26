@@ -8,9 +8,12 @@ import '../styles.css';
 import {ServicioSupremo}  from '../servicios/servicio';
 import { INSUMOS_URL } from '../urls'; 
 
-
-export default function PaginaInsumos() {
-  const servicioDeInsumos = new ServicioSupremo(INSUMOS_URL);
+//Aqui recibimos el  token  como un prop.
+interface Prop {
+  token:string;
+}
+export default function PaginaInsumos({token}:  Prop) {
+  const servicioDeInsumos = new ServicioSupremo(INSUMOS_URL, token);//Pasamos el token al servicio_supremo
   const [entidadParaEditar, setEntidadParaEditar] = useState<string | null>(null);
   const [crear, setCrear] = useState<boolean>(false);
   return (

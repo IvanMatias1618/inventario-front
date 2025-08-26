@@ -14,9 +14,12 @@ export async function  IniciarSesion( usuario: UsuarioIniSesion) {
         ok: false,
         mensaje: ["No se pudo completar la operacion."]
       }));
+console.log(json);
+console.log("json");
+      
       return {
         ok: res.ok,
-        mensaje: json?.mensaje ?? (!res.ok ? ['Error Desconocido'] : undefined)
+        mensaje: json //?? (!res.ok ? ['Error Desconocido'] : undefined)
       };
     } catch (error) {
       return {

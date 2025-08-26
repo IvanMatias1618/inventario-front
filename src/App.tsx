@@ -10,10 +10,11 @@ import BarraDeUsuario from './cabecera/usuario';
 
 function App() {
   const [usuario, setUsuario ]  = useState<string>('');
-  const [_token, setToken]  = useState<String>('');
+  const [token, setToken]  = useState<string>('');
   function manejarUsuario(nombre: string, token: string) {
     setUsuario(nombre);
     setToken(token);
+    console.log(token);
   }
   
   const [paginaActual, setPaginaActual] = useState('usuarios');
@@ -21,11 +22,11 @@ function App() {
   const renderizarPagina = () =>  {
     switch (paginaActual) {
       case 'insumos':
-        return <PaginaInsumos/>;
+        return <PaginaInsumos token={token}/>;
       case 'recetas':
-        return <PaginaRecetas />;
+        return <PaginaRecetas token={token}/>;
       case 'usuarios':
-        return <PaginaUsuarios guardarUsuario={(nombre, token) => manejarUsuario(nombre, token)  }/>;
+        return <PaginaUsuarios guardarUsuario={(nombre, token) => manejarUsuario(nombre, token)  } token={token} />;
     }
   }
   
