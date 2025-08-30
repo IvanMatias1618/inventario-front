@@ -32,6 +32,7 @@ function App() {
   
   return (
     <>
+      <h2> De momento no tenemos un servidor respondiendo las peticiones rest... pero estamos trabajando en ello.</h2>
       <BarraDeUsuario nombre={usuario} cerrarSesion={() => setUsuario('')} />
       <Cabecera onSeleccionar={setPaginaActual}/>
       {renderizarPagina()}
