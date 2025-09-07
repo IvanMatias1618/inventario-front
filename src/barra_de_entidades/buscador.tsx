@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./estilos.css";
 
 export function Buscador({onBuscar}: {onBuscar: (valor: string) => void}) {
