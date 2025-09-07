@@ -1,6 +1,6 @@
 #titulo {
     color: #c3b2d9;
-    margin: 0;
+    margin: 0.3rem;
     padding: 0;
 }
 
@@ -19,4 +19,19 @@
     border-radius: 8px;
     padding: 0.5cap;
     color: black;
+}
+
+#usuario_info {
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to right, #0c0b10, #1f2a47);
+    border-radius: 0.5cap;
+    height: 4cap;
+}
+
+#usuario_nombre {
+    color: antiquewhite;
+    padding: 0.5rem;
+    margin: 0;
+    padding-left: 1.5rem;
 }

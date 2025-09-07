@@ -8,10 +8,12 @@
 .crear_boton {
     background-color: #e1d8c1;
     color: #1f2a47;
+    margin-right: 1cap;
 }
 
 .btn_submit {
     background-color: #c3b2d9;
+    margin: 1cap;
 }
 
 .btn_cancelar {
